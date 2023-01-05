@@ -13,6 +13,7 @@
             "Principal": "*",
             "Action": "s3:*",
             "Resource": [
+                "arn:aws:s3:::MY-BUCKET",
                 "arn:aws:s3:::MY-BUCKET/*"
             ],
             "Condition": {
