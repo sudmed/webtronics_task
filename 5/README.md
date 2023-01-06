@@ -20,12 +20,11 @@
 
 ### Пример модульного пайплайна 
 (из проекта [momo-store](https://github.com/sudmed/momo-store)) 
-#### Пайплайн включает 2 этапа: собственно запуск отдельных модулей фронтэнда и бекэнда, а также установку certbot'а
+#### Пайплайн включает 2 этапа: собственно запуск отдельных модулей фронтэнда и бекэнда, а также этап установки (обновления) SSL-сертификата certbot'ом
 ```yaml
 stages:
   - module-pipelines
   - certbot
-
 
 frontend:
   stage: module-pipelines
@@ -37,7 +36,6 @@ frontend:
     changes: 
       - frontend/**/*
 
-
 backend:
   stage: module-pipelines
   trigger:
@@ -47,7 +45,6 @@ backend:
   only:
     changes:  
       - backend/**/* 
-
 
 deploy-certbot:
   stage: certbot
