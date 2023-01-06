@@ -7,7 +7,7 @@
 #### Алгоритм 1:
 1.1. Найти удаленный файл: `sudo lsof | grep deleted` или `sudo lsof -a +L1`.  
 1.2. В выводе предыдущей команды будет PID процесса, по нему находим сам процесс: `ps -aux | grep $PID`.  
-1.3. В зависимости от важности процесса, отправляем команду убить процесс `kill -9 $PID` или перезапустить `systemctl stop $process && systemctl start $process`.  
+1.3. В зависимости от важности процесса, отправляем команду убить процесс `kill -9 $PID` или перезапустить `systemctl stop $process && systemctl start $process`, или переходим к алгоритму №2.  
 
 #### Алгоритм 2:
 2.1. Найти удаленный файл: `sudo lsof | grep deleted` или `sudo lsof -a +L1`.  
