@@ -16,3 +16,53 @@
 
 При непрерывном развертывании финальный этап развертывания на продуктовое окружение осуществляется с ручным контролем ("деплой по кнопке").  
 При непрерывной доставке финальный этап развертывания на продуктовую среду автоматизирован полностью, без вмешательства человека.  
+
+
+### Пример модульного пайплайна
+#### Пайплайн включает 2 этапа: собственно запуск отдельных модулей и установку certbot'а
+```yaml
+stages:
+  - module-pipelines
+  - certbot
+
+
+frontend:
+  stage: module-pipelines
+  trigger:
+    include:
+      - "/frontend/.gitlab-ci.yml"
+    strategy: depend 
+  only:
+    changes: 
+      - frontend/**/*
+
+
+backend:
+  stage: module-pipelines
+  trigger:
+    include:
+      - "/backend/.gitlab-ci.yml"
+    strategy: depend 
+  only:
+    changes:  
+      - backend/**/* 
+
+
+deploy-certbot:
+  stage: certbot
+  image: alpine:3.15.0
+  before_script:
+    - apk add openssh-client bash docker docker-compose
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - echo "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+    - docker context create momo --docker "host=ssh://${DEV_USER}@${DEV_HOST}"
+  script:
+    - docker-compose -H ssh://${DEV_USER}@${DEV_HOST} up --detach certbot
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+```
+
