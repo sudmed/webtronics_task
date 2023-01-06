@@ -65,9 +65,16 @@ deploy-certbot:
 ```
 
 
-## Пример пайплайна бекэнда
+## Пример пайплайна бекэнда на Go
 (из проекта [momo-store](https://github.com/sudmed/momo-store)) 
 #### Пайплайн включает 5 этапов: 
+1) сборка исходного кода (и отправка архива с бинарем в хранилище Sonatype Nexus 3).
+2) тестирование (`go test`, SonarScanner, SpotBugs SAST, Gosec SAST).
+3) упаковка в докер-образ.
+4) отправка образа в хранилище GitLab Container Registry.
+5) развертывание образа из GitLab Container Registry при помощи Docker Swarm mode.
+
+
 ```yaml
 variables:
   VERSION: 1.0.${CI_PIPELINE_ID}
