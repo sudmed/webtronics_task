@@ -19,7 +19,7 @@
 
 
 ## Пример модульного пайплайна 
-(из проекта [momo-store](https://github.com/sudmed/momo-store)) 
+(из моего учебного проекта [momo-store](https://github.com/sudmed/momo-store)) 
 #### Пайплайн включает 2 этапа: собственно запуск отдельных модулей фронтэнда и бекэнда, а также этап установки (обновления) SSL-сертификата certbot'ом
 ```yaml
 stages:
@@ -66,7 +66,7 @@ deploy-certbot:
 
 
 ## Пример пайплайна для бекэнда на Go
-(из проекта [momo-store](https://github.com/sudmed/momo-store)) 
+(из моего учебного проекта [momo-store](https://github.com/sudmed/momo-store)) 
 #### Пайплайн включает 5 этапов: 
 1) сборка исходного кода (и отправка архива с бинарем в хранилище Sonatype Nexus 3).
 2) тестирование (`go test`, SonarScanner, SpotBugs SAST, Gosec SAST).
