@@ -10,7 +10,9 @@
 
 ---
 
-Решение для linux - на баше в файле [script.sh](script.sh).  
+Решение на баше в файле [script.sh](script.sh).  
 
-Для windows - всего одна команда штатной утилитой robocopy:  
-`/create	Creates a directory tree and zero-length files only`  
+PS Для windows - всего одна команда штатной утилитой `robocopy` с ключом `/create`:  
+```text
+Creates a directory tree and zero-length files only
+```
