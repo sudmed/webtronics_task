@@ -11,8 +11,3 @@
 ---
 
 Решение на баше в файле [script.sh](script.sh).  
-
-PS Для windows - всего одна команда штатной утилитой `robocopy` с ключом `/create`:  
-```text
-Creates a directory tree and zero-length files only
-```
